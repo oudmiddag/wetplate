@@ -24,4 +24,34 @@
       });
     });
   });
+
+  // Live text filter — powers transcript search and the video index.
+  // <input data-filter="#scope" data-filter-count="#count">
+  // Filters elements marked [data-filter-item] inside #scope (or its direct
+  // children as a fallback, e.g. transcript <details>), matching on text.
+  document.querySelectorAll('[data-filter]').forEach(function (input) {
+    var scope = document.querySelector(input.getAttribute('data-filter'));
+    if (!scope) return;
+    var explicit = scope.querySelectorAll('[data-filter-item]');
+    var items = explicit.length ? explicit : scope.children;
+    var countSel = input.getAttribute('data-filter-count');
+    var counter = countSel ? document.querySelector(countSel) : null;
+
+    function run() {
+      var q = input.value.trim().toLowerCase();
+      var shown = 0;
+      Array.prototype.forEach.call(items, function (it) {
+        var match = !q || it.textContent.toLowerCase().indexOf(q) !== -1;
+        it.style.display = match ? '' : 'none';
+        if (it.tagName === 'DETAILS') it.open = !!q && match;
+        if (match) shown++;
+      });
+      if (counter) {
+        counter.textContent = q
+          ? (shown + ' result' + (shown === 1 ? '' : 's') + ' for “' + input.value.trim() + '”')
+          : '';
+      }
+    }
+    input.addEventListener('input', run);
+  });
 })();

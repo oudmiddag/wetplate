@@ -19,7 +19,6 @@
         <li><a href="knowledge.html">Knowledge</a></li>
         <li><a href="gallery.html">Gallery</a></li>
         <li><a href="feed.html">Feed</a></li>
-        <li><a href="forum.html">Forum</a></li>
         <li><a href="directory.html">Directory</a></li>
         <li><a href="resources.html">Resources</a></li>
         <li class="nav-cta"><a class="btn btn--primary" href="index.html#join">Join</a></li>
@@ -29,73 +28,74 @@
 
   <div class="page-head">
     <div class="container">
-      <span class="eyebrow">Tutorials &amp; technique</span>
-      <h1>Learn the collodion craft</h1>
-      <p class="lead">From your first silver pour to advanced varnishing — clear, tested guides
-        written and reviewed by the community.</p>
+      <span class="eyebrow">Tutorials &amp; technique · indexed, not re-hosted</span>
+      <h1>Find the right tutorial — by what's said in it</h1>
+      <p class="lead">We don't re-host other people's videos. We <strong>index</strong> the best ones from
+        across the community and make them searchable down to the spoken word, using structured
+        transcripts — so a question like “silver bath too warm” lands on the exact moment that answers
+        it, then sends you to the original.</p>
     </div>
   </div>
 
   <section class="section">
     <div class="container">
-      <div class="chips">
-        <button class="chip active">All</button>
-        <button class="chip">Beginner</button>
-        <button class="chip">Wet plate chemistry</button>
-        <button class="chip">Equipment</button>
-        <button class="chip">Troubleshooting</button>
+      <div class="searchbar">
+        <input type="text" placeholder="Search inside videos — e.g. 'comet trails', 'tilt the plate', 'hypo'…"
+          data-filter="#video-index" data-filter-count="#video-index-count" />
+        <button class="btn btn--primary">Search</button>
+      </div>
+      <p class="search-count" id="video-index-count"></p>
+
+      <div class="video-list" id="video-index">
+
+        <article class="video-result" data-filter-item>
+          <div class="vr-thumb"><div class="plate plate--silver"><div class="plate-cap"><span class="badge badge--video">▶ 18:24</span></div></div></div>
+          <div>
+            <h3><a href="tutorial-collodion-process.html">Your first tintype, start to finish</a></h3>
+            <div class="vr-meta"><span class="badge badge--video">Video</span><span class="badge badge--indexed">Transcript indexed</span><span>via Wetplate Hub · original</span><span>Beginner</span></div>
+            <div class="vr-snip"><span class="ts">10:40</span>“One confident sweep of developer right across — you want the whole surface wet in under a second. Watch the image come up… and stop it with water.”</div>
+          </div>
+        </article>
+
+        <article class="video-result" data-filter-item>
+          <div class="vr-thumb"><div class="plate plate--cool"></div></div>
+          <div>
+            <h3><a href="https://www.youtube.com/user/borutpeterlin" target="_blank" rel="noopener">Wet plate on location — managing wind &amp; dust ↗</a></h3>
+            <div class="vr-meta"><span class="badge badge--video">Video</span><span class="badge badge--indexed">Transcript indexed</span><span>via Borut Peterlin · YouTube</span><span>Field work</span></div>
+            <div class="vr-snip"><span class="ts">06:12</span>“In the field your plate dries faster, so I keep the developer close and I pour the moment the holder is back — speed matters more than out in the studio.”</div>
+          </div>
+        </article>
+
+        <article class="video-result" data-filter-item>
+          <div class="vr-thumb"><div class="plate plate--silver"></div></div>
+          <div>
+            <h3><a href="https://www.youtube.com/@mhaustria" target="_blank" rel="noopener">Large-format portraits &amp; keeping the silver bath healthy ↗</a></h3>
+            <div class="vr-meta"><span class="badge badge--video">Video</span><span class="badge badge--indexed">Transcript indexed</span><span>via Markus Hofstätter · YouTube</span><span>Chemistry</span></div>
+            <div class="vr-snip"><span class="ts">14:30</span>“If the bath gets too warm the image fogs, so I check the temperature and the specific gravity, sun it to drop the organics, then filter before the next session.”</div>
+          </div>
+        </article>
+
+        <article class="video-result" data-filter-item>
+          <div class="vr-thumb"><div class="plate"></div></div>
+          <div>
+            <h3><a href="https://studioq.com/blog" target="_blank" rel="noopener">Mixing &amp; ageing your salted collodion ↗</a></h3>
+            <div class="vr-meta"><span class="badge badge--video">Video</span><span class="badge badge--indexed">Transcript indexed</span><span>via Quinn Jacobson · Studio Q</span><span>Chemistry</span></div>
+            <div class="vr-snip"><span class="ts">03:48</span>“Fresh collodion is too sensitive and fogs; let it age a day or two so the bromides and iodides settle, and it pours cleaner with fewer comet trails.”</div>
+          </div>
+        </article>
+
+        <article class="video-result" data-filter-item>
+          <div class="vr-thumb"><div class="plate plate--cool"></div></div>
+          <div>
+            <h3><a href="https://www.youtube.com/user/borutpeterlin" target="_blank" rel="noopener">Varnishing finished plates with sandarac ↗</a></h3>
+            <div class="vr-meta"><span class="badge badge--video">Video</span><span class="badge badge--indexed">Transcript indexed</span><span>via Borut Peterlin · YouTube</span><span>Finishing</span></div>
+            <div class="vr-snip"><span class="ts">02:05</span>“Warm the plate gently and evenly before the varnish — too cold and the sandarac sets in streaks, too hot and the image can crack.”</div>
+          </div>
+        </article>
+
       </div>
 
-      <div class="grid grid-3">
-        <a class="card" href="tutorial-collodion-process.html">
-          <div class="card-media"><div class="plate plate--silver"><div class="plate-cap"><span class="badge badge--video">▶ Video</span></div></div></div>
-          <div class="card-body">
-            <h3>Your first tintype, start to finish</h3>
-            <p>Full video walkthrough: pour, sensitise, expose, develop, fix and varnish your first plate.</p>
-            <div class="card-meta"><span>Beginner</span><span>·</span><span>18 min video</span></div>
-          </div>
-        </a>
-        <article class="card">
-          <div class="card-media"><div class="plate"></div></div>
-          <div class="card-body">
-            <h3>Mixing your collodion: a safe recipe</h3>
-            <p>Salted collodion ratios, ageing, and how to store it safely at home.</p>
-            <div class="card-meta"><span>Chemistry</span><span>·</span><span>12 min read</span></div>
-          </div>
-        </article>
-        <article class="card">
-          <div class="card-media"><div class="plate plate--cool"></div></div>
-          <div class="card-body">
-            <h3>Building a portable darkbox</h3>
-            <p>A field setup for shooting wet plate on location, on a budget.</p>
-            <div class="card-meta"><span>Equipment</span><span>·</span><span>15 min read</span></div>
-          </div>
-        </article>
-        <article class="card">
-          <div class="card-media"><div class="plate"></div></div>
-          <div class="card-body">
-            <h3>Reading your defects: oysters, comets &amp; streaks</h3>
-            <p>A visual guide to the most common plate problems and their fixes.</p>
-            <div class="card-meta"><span>Troubleshooting</span><span>·</span><span>20 min read</span></div>
-          </div>
-        </article>
-        <article class="card">
-          <div class="card-media"><div class="plate plate--silver"></div></div>
-          <div class="card-body">
-            <h3>Maintaining your silver bath</h3>
-            <p>Testing specific gravity, sunning and keeping your bath healthy.</p>
-            <div class="card-meta"><span>Chemistry</span><span>·</span><span>10 min read</span></div>
-          </div>
-        </article>
-        <article class="card">
-          <div class="card-media"><div class="plate plate--cool"></div></div>
-          <div class="card-body">
-            <h3>Varnishing &amp; protecting finished plates</h3>
-            <p>Sandarac varnish, heating safely, and archival storage.</p>
-            <div class="card-meta"><span>Beginner</span><span>·</span><span>9 min read</span></div>
-          </div>
-        </article>
-      </div>
+      <p class="compare-foot">Transcript snippets are illustrative of how indexing works in this mockup; each result links to the creator's original video. Captions/transcripts would be machine-generated and human-corrected, with timestamps preserved.</p>
     </div>
   </section>
 
@@ -127,7 +127,7 @@
           <p class="tagline">The global, community-run home for wet plate collodion photography.</p>
         </div>
         <div><h4>Explore</h4><ul class="f-links"><li><a href="tutorials.html">Tutorials</a></li><li><a href="knowledge.html">Knowledge base</a></li><li><a href="gallery.html">Gallery</a></li><li><a href="resources.html">Resource index</a></li></ul></div>
-        <div><h4>Community</h4><ul class="f-links"><li><a href="feed.html">Feed</a></li><li><a href="forum.html">Forum</a></li><li><a href="directory.html">Directory</a></li><li><a href="feed.html">Events</a></li></ul></div>
+        <div><h4>Community</h4><ul class="f-links"><li><a href="feed.html">Feed</a></li><li><a href="directory.html">Directory</a></li><li><a href="feed.html">Events</a></li></ul></div>
         <div><h4>Connect</h4><ul class="f-links"><li><a href="about.html">About the hub</a></li><li><a href="index.html#join">Join</a></li><li><a href="#">Newsletter</a></li><li><a href="#">Contact</a></li></ul></div>
       </div>
       <div class="footer-bottom"><span>© 2026 Wetplate Hub — a community project.</span><span>Mockup · for design review only</span></div>
