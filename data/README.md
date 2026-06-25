@@ -100,3 +100,51 @@ Left unmanaged these two drift apart. Recommendation:
 **One-line summary:** make the ontology the *typed spine* and the wiki the
 *prose muscle*, keep every downstream view generated, and gate contributions on
 provenance + review rather than on who can write RDF.
+
+---
+
+## In begrijpelijke taal (NL)
+
+Dezelfde aanbeveling, zonder jargon — voor wie geen ontologie-achtergrond heeft.
+
+**Het probleem in één zin.** Straks heb je twee dingen die hetzelfde lijken te
+doen: de **ontologie** (een strak, door jou beheerd bestand met feiten) en de
+**wiki** (waar de community vrij mag schrijven). Zonder afspraken gaan die uit
+elkaar lopen en weet niemand meer wat klopt. Dit gaat over hoe je dat voorkomt.
+
+1. **Geef elk type informatie één vaste plek.** De *nette, gestructureerde
+   feiten* (termen + definities, de processtappen op volgorde, scheikundige
+   gegevens, veiligheid, tags) horen in de **ontologie**. De *losse, snel
+   veranderende tekst* (lange probleemoplossing, persoonlijke tips, regionale
+   leveranciersweetjes) hoort in de **wiki**. Elk feit staat zo op precies één
+   plek; de website zet ze samen op het scherm.
+
+2. **Bewerk de gegenereerde delen nooit met de hand.** De woordenlijst en de
+   JSON-LD in `knowledge.html` komen automatisch uit de ontologie. Wil je iets
+   wijzigen? Pas de ontologie aan en draai het script opnieuw — niet de HTML
+   zelf. Laat de CI klagen als iemand de ontologie wijzigt maar vergeet opnieuw
+   te genereren.
+
+3. **Maak meedoen makkelijk — niemand wil een ontologie-taal leren.** *Nu:*
+   iemand levert een bijdrage via een formulier of verzoek, en jij (of een klein
+   hulpscriptje) zet dat om naar de ontologie; wie het aanleverde en de bron leg
+   je vast, zodat credits en "laatst nagekeken door" bewaard blijven. *Later:*
+   een eenvoudig invulscherm dat de gegevens achter de schermen wegschrijft, met
+   de ontologie als exportformaat.
+
+4. **Bewaak kwaliteit met "bron + controle", niet met een slot op de deur.**
+   Sluit de boel niet af; spreek een standaard af: elke term heeft een **bron**
+   en een **reviewer**, en een term zonder bron geldt als klad. Dit kun je
+   automatisch laten controleren (afkeuren als label, definitie óf bron
+   ontbreekt) — de machineversie van jullie redactieregel.
+
+5. **Houd het stabiel en verwijs naar buiten.** Geef elke uitgave een
+   versienummer, houd de adressen (IRI's) van termen vast (anderen taggen hun
+   bronnen daaraan), en verwijs liever naar bestaande naslagbronnen (Wikipedia,
+   Wikidata, scheikunde-databases via het CAS-nummer) dan alles zelf opnieuw te
+   beschrijven.
+
+**De kern in één zin:** maak de **ontologie de strakke ruggengraat** (vaste
+feiten) en de **wiki de losse spierkracht** (vrije tekst), laat alles wat de
+bezoeker ziet **automatisch genereren**, en houd de kwaliteit op peil met
+**bron + review** in plaats van met technische drempels.
