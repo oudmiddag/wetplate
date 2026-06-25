@@ -490,6 +490,7 @@ p { margin: 0 0 1rem; color: var(--ink-soft); }
 .compare-table .item { font-weight: 650; color: var(--ink); }
 .compare-table .item small { display: block; font-weight: 400; color: var(--muted); margin-top: 2px; }
 .price { font-variant-numeric: tabular-nums; font-weight: 700; color: var(--ink); white-space: nowrap; }
+.price small { display: block; font-weight: 400; color: var(--muted); font-size: 0.76rem; white-space: normal; margin-top: 3px; max-width: 200px; }
 .price .cur { color: var(--muted); font-weight: 500; font-size: 0.85em; }
 .price--best { color: var(--accent-dark); }
 .price--na { color: var(--muted); font-weight: 400; }
@@ -498,3 +499,12 @@ p { margin: 0 0 1rem; color: var(--ink-soft); }
 .vendor-head { display: flex; flex-direction: column; gap: 2px; }
 .vendor-head .region { font-size: 0.72rem; font-weight: 600; color: var(--muted); text-transform: none; letter-spacing: 0; }
 .compare-foot { font-size: 0.85rem; color: var(--muted); margin-top: 14px; }
+.stock { font-size: 0.78rem; font-weight: 650; white-space: nowrap; }
+.stock--in  { color: #2e7d32; }
+.stock--out { color: #a23a1f; }
+.stock--low { color: #8a6d1f; }
+.supplier-jump { display: flex; flex-wrap: wrap; gap: 10px; margin: 8px 0 30px; }
+.supplier-block { margin-bottom: 44px; }
+.supplier-block > .sb-head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 12px; margin-bottom: 14px; }
+.supplier-block .sb-head h3 { margin: 0; font-size: 1.25rem; }
+.supplier-block .sb-head .sb-meta { font-size: 0.88rem; color: var(--muted); }
