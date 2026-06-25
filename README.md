@@ -7,16 +7,33 @@ This is a **design mockup** for review — no backend, no build step, no externa
 dependencies. All placeholder imagery is generated with CSS so the site renders
 fully offline.
 
+The hub's distinguishing idea is to be a **connective layer**, not another silo: it
+indexes, links, credits and preserves the knowledge that already exists across the
+community. See [`STRATEGY.md`](STRATEGY.md) for the full vision and the five pillars.
+
 ## Pages
 
 | File | Section |
 |------|---------|
-| `index.html` | Home — hero, section overview, featured plates, join CTA |
+| `index.html` | Home — hero, the "we connect everything" overview, featured plates, join CTA |
 | `tutorials.html` | Tutorials & technique — guides, filters, the collodion process |
+| `knowledge.html` | Knowledge base — glossary, formulas and troubleshooting, each entry **cited** |
 | `gallery.html` | Community gallery — grid of member plates with filters |
+| `feed.html` | Community feed & events — one timeline **aggregated** from across the web |
 | `forum.html` | Discussion forum — categories and recent topics |
-| `directory.html` | Directory & events — photographers, search, workshops |
+| `directory.html` | Directory & events — photographer search, links to claimable profiles |
+| `profile.html` | Claimable photographer profile — aggregates a member's whole presence |
+| `resources.html` | Resource index — curated, outbound links to forums, videos, suppliers, books |
 | `about.html` | About — mission and how to take part |
+
+### How the pages map to the strategy
+
+| Pillar | Page |
+|--------|------|
+| Aggregate, don't rebuild | `resources.html` |
+| Canonical knowledge + provenance | `knowledge.html` |
+| Claimable identity | `profile.html` (via `directory.html`) |
+| Community feed + events | `feed.html` |
 
 ## How to view
 
@@ -37,8 +54,10 @@ python3 -m http.server 8000
 ## Files
 
 ```
-index.html, tutorials.html, gallery.html, forum.html, directory.html, about.html
-assets/css/styles.css   — shared styling and design tokens
+index.html, tutorials.html, knowledge.html, gallery.html, feed.html,
+forum.html, directory.html, profile.html, resources.html, about.html
+STRATEGY.md              — vision: how the hub becomes the community's starting point
+assets/css/styles.css    — shared styling and design tokens
 assets/js/main.js        — mobile nav toggle + filter chip demo
 assets/img/              — for future real assets (placeholders are CSS-generated)
 ```
