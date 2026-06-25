@@ -35,7 +35,13 @@ around.
   forum threads, videos, suppliers (by region), books, and blogs.
 - Generous outbound linking; the goal is "start here, then go to the source."
 - Community rating/curation so the best resource for each topic rises to the top.
-- *In the mockup:* `resources.html`.
+- **Tutorials are indexed, not re-hosted:** rather than build our own video library, we
+  index the community's existing videos and make them findable *by what is said in them*
+  via structured transcripts — a search lands you on the exact timestamp, then links out
+  to the creator's original.
+- A **supplier price index** that aggregates public catalogues so the real cost of a plate
+  is comparable in one place; we link out to each shop to buy.
+- *In the mockup:* `resources.html`, `tutorials.html` (transcript-indexed videos), `compare.html` (suppliers).
 
 ### 2. Canonical knowledge, with provenance
 - A community-editable knowledge base — glossary, chemistry formulas, defect
@@ -64,6 +70,19 @@ around.
   and RSS — so others can build on it rather than being locked in.
 - Open-source and community-editable, Wikipedia-style. People invest in what they
   *own* and can extend.
+- *In the mockup:* export / API / RSS affordances on `resources`, `compare`, `feed` and
+  `knowledge`, plus "suggest an edit / revision history"; transcripts are treated as
+  structured, searchable data.
+
+## What we deliberately don't do
+
+- **We don't host a discussion forum.** A hub-run forum would be "rebuild, not aggregate" —
+  and would compete with the established communities (Photrio, Reddit) we want to send
+  people *to*. Instead, forum activity is **aggregated** into the community feed and the
+  best threads are **indexed** in the resource index. (The mockup previously had a hosted
+  forum page; it was removed for exactly this reason.)
+- **We don't re-host tutorials.** See pillar 1 — we index and make others' videos
+  searchable rather than cloning their content into a new silo.
 
 ## Why people will *want* to be on it
 
@@ -93,9 +112,10 @@ This repository contains a static, clickable mockup demonstrating each pillar:
 
 | Pillar | Page |
 |--------|------|
-| Aggregate, don't rebuild | `resources.html` |
+| Aggregate, don't rebuild | `resources.html`, `tutorials.html` (transcript-indexed videos), `compare.html` (suppliers) |
 | Canonical knowledge + provenance | `knowledge.html` |
 | Claimable identity | `profile.html` (via `directory.html`) |
 | Community feed + events | `feed.html` |
+| Open & interoperable | export/API/RSS affordances on the pages above; searchable transcripts |
 
 See `README.md` for how to view the mockup.
