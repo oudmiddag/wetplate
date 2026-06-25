@@ -17,6 +17,7 @@ community. See [`STRATEGY.md`](STRATEGY.md) for the full vision and the five pil
 |------|---------|
 | `index.html` | Home — hero, the "we connect everything" overview, featured plates, join CTA |
 | `tutorials.html` | Tutorials & technique — guides, filters, the collodion process |
+| `tutorial-collodion-process.html` | Full video tutorial — video player, chapters, step-by-step guide, materials, safety, transcript & sources |
 | `knowledge.html` | Knowledge base — glossary, formulas and troubleshooting, each entry **cited** |
 | `gallery.html` | Community gallery — grid of member plates with filters |
 | `feed.html` | Community feed & events — one timeline **aggregated** from across the web |
