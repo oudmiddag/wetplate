@@ -1,0 +1,488 @@
+@prefix cwp: <https://tijdgieterij.nl/ontology/collodion-wetplate#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+
+cwp:CollodionWetplateOntology
+    rdf:type owl:Ontology ;
+    dcterms:title "Collodion Wet Plate Ontology"@en , "Ontologie collodion wetplate"@nl ;
+    dcterms:description "A semantic knowledge base for the wet plate collodion process: processes, chemistry, materials, equipment, image types, defects, safety aspects and historical context."@en , "Een semantische kennisbank voor het natte collodiumprocedé: processen, chemie, materialen, apparatuur, beeldtypen, fouten, veiligheidsaspecten en historische context."@nl ;
+    owl:versionInfo "0.2" .
+
+#################################################################
+# Core classes
+#################################################################
+
+cwp:WetPlateEntity rdf:type owl:Class ;
+    rdfs:label "Wet plate entity"@en , "Wet plate entiteit"@nl ;
+    skos:definition "Top-level class for anything described in the wet plate collodion domain."@en .
+
+cwp:Process rdf:type owl:Class ;
+    rdfs:subClassOf cwp:WetPlateEntity ;
+    rdfs:label "Process"@en , "Proces"@nl ;
+    skos:definition "An ordered sequence of steps that transforms materials into a photographic result."@en .
+
+cwp:ProcessStep rdf:type owl:Class ;
+    rdfs:subClassOf cwp:WetPlateEntity ;
+    rdfs:label "Process step"@en , "Processtap"@nl ;
+    skos:definition "A single stage within a process, performed in a defined order relative to the other steps."@en .
+
+cwp:ImageType rdf:type owl:Class ;
+    rdfs:subClassOf cwp:WetPlateEntity ;
+    rdfs:label "Image type"@en , "Beeldtype"@nl ;
+    skos:definition "A category of photographic object produced by the collodion process, distinguished by support and viewing mode."@en .
+
+cwp:ChemicalSubstance rdf:type owl:Class ;
+    rdfs:subClassOf cwp:WetPlateEntity ;
+    rdfs:label "Chemical substance"@en , "Chemische stof"@nl ;
+    skos:definition "A chemical compound or material used in the collodion process."@en .
+
+cwp:ChemicalMixture rdf:type owl:Class ;
+    rdfs:subClassOf cwp:ChemicalSubstance ;
+    rdfs:label "Chemical mixture"@en , "Chemisch mengsel"@nl ;
+    skos:definition "A preparation made by combining two or more chemical substances, such as a bath, developer or varnish."@en .
+
+cwp:Halide rdf:type owl:Class ;
+    rdfs:subClassOf cwp:ChemicalSubstance ;
+    rdfs:label "Halide"@en , "Halogenide"@nl ;
+    skos:definition "A salt of a halogen used to make the collodion light-sensitive when combined with silver nitrate."@en .
+
+cwp:Iodide rdf:type owl:Class ;
+    rdfs:subClassOf cwp:Halide ;
+    rdfs:label "Iodide"@en , "Jodide"@nl ;
+    skos:definition "An iodide salt; with silver nitrate it forms light-sensitive silver iodide."@en .
+
+cwp:Bromide rdf:type owl:Class ;
+    rdfs:subClassOf cwp:Halide ;
+    rdfs:label "Bromide"@en , "Bromide"@nl ;
+    skos:definition "A bromide salt; with silver nitrate it forms silver bromide, extending tonal range and speed."@en .
+
+cwp:Developer rdf:type owl:Class ;
+    rdfs:subClassOf cwp:ChemicalMixture ;
+    rdfs:label "Developer"@en , "Ontwikkelaar"@nl ;
+    skos:definition "A solution that reduces exposed silver salts to metallic silver, making the latent image visible."@en .
+
+cwp:Fixer rdf:type owl:Class ;
+    rdfs:subClassOf cwp:ChemicalMixture ;
+    rdfs:label "Fixer"@en , "Fixeer"@nl ;
+    skos:definition "A solution that dissolves unexposed silver salts so the image becomes stable and light-fast."@en .
+
+cwp:Varnish rdf:type owl:Class ;
+    rdfs:subClassOf cwp:ChemicalMixture ;
+    rdfs:label "Varnish"@en , "Vernis"@nl ;
+    skos:definition "A protective resin coating applied to the finished, dried plate."@en .
+
+cwp:SupportMaterial rdf:type owl:Class ;
+    rdfs:subClassOf cwp:WetPlateEntity ;
+    rdfs:label "Support material"@en , "Drager"@nl ;
+    skos:definition "The plate substrate that carries the collodion film, such as glass or blackened metal."@en .
+
+cwp:Equipment rdf:type owl:Class ;
+    rdfs:subClassOf cwp:WetPlateEntity ;
+    rdfs:label "Equipment"@en , "Apparatuur"@nl ;
+    skos:definition "Physical apparatus used to make or process a plate."@en .
+
+cwp:Camera rdf:type owl:Class ;
+    rdfs:subClassOf cwp:Equipment ;
+    rdfs:label "Camera"@en , "Camera"@nl ;
+    skos:definition "The optical device that exposes the sensitised plate."@en .
+
+cwp:Lens rdf:type owl:Class ;
+    rdfs:subClassOf cwp:Equipment ;
+    rdfs:label "Lens"@en , "Objectief"@nl ;
+    skos:definition "The objective that projects the image onto the plate; its design shapes sharpness and rendering."@en .
+
+cwp:DarkroomEquipment rdf:type owl:Class ;
+    rdfs:subClassOf cwp:Equipment ;
+    rdfs:label "Darkroom equipment"@en , "Doka-apparatuur"@nl ;
+    skos:definition "Equipment used to coat, sensitise and process plates away from actinic light, often portable for wet plate work."@en .
+
+cwp:LightSource rdf:type owl:Class ;
+    rdfs:subClassOf cwp:WetPlateEntity ;
+    rdfs:label "Light source"@en , "Lichtbron"@nl ;
+    skos:definition "A source of actinic light used to expose the plate."@en .
+
+cwp:ImageCharacteristic rdf:type owl:Class ;
+    rdfs:subClassOf cwp:WetPlateEntity ;
+    rdfs:label "Image characteristic"@en , "Beeldkenmerk"@nl ;
+    skos:definition "A measurable or perceptible quality of the resulting image, such as contrast or sharpness."@en .
+
+cwp:Defect rdf:type owl:Class ;
+    rdfs:subClassOf cwp:WetPlateEntity ;
+    rdfs:label "Defect or artefact"@en , "Fout of artefact"@nl ;
+    skos:definition "An unwanted flaw in the plate, usually traceable to a contamination, technique or environmental cause."@en .
+
+cwp:EnvironmentalFactor rdf:type owl:Class ;
+    rdfs:subClassOf cwp:WetPlateEntity ;
+    rdfs:label "Environmental factor"@en , "Omgevingsfactor"@nl ;
+    skos:definition "An ambient condition, such as temperature or humidity, that influences the process or the plate."@en .
+
+cwp:SafetyAspect rdf:type owl:Class ;
+    rdfs:subClassOf cwp:WetPlateEntity ;
+    rdfs:label "Safety aspect"@en , "Veiligheidsaspect"@nl ;
+    skos:definition "A hazard or precaution relevant to handling chemicals and equipment in the process."@en .
+
+cwp:Role rdf:type owl:Class ;
+    rdfs:subClassOf cwp:WetPlateEntity ;
+    rdfs:label "Role"@en , "Rol"@nl ;
+    skos:definition "A function a person fulfils in relation to the process or an artefact."@en .
+
+cwp:Person rdf:type owl:Class ;
+    rdfs:subClassOf cwp:WetPlateEntity ;
+    rdfs:label "Person"@en , "Persoon"@nl ;
+    skos:definition "An individual associated with the history or practice of the collodion process."@en .
+
+cwp:Recipe rdf:type owl:Class ;
+    rdfs:subClassOf cwp:WetPlateEntity ;
+    rdfs:label "Recipe"@en , "Recept"@nl ;
+    skos:definition "A documented formulation linking specific substances and proportions to an intended result."@en .
+
+cwp:ConservationActivity rdf:type owl:Class ;
+    rdfs:subClassOf cwp:WetPlateEntity ;
+    rdfs:label "Conservation activity"@en , "Conserveringsactiviteit"@nl ;
+    skos:definition "An action taken to preserve, document or stabilise an existing plate."@en .
+
+cwp:AnalysisMethod rdf:type owl:Class ;
+    rdfs:subClassOf cwp:WetPlateEntity ;
+    rdfs:label "Analysis method"@en , "Analysemethode"@nl ;
+    skos:definition "A technique used to examine the material composition or condition of a plate."@en .
+
+#################################################################
+# Object properties
+#################################################################
+
+cwp:hasStep rdf:type owl:ObjectProperty ;
+    rdfs:domain cwp:Process ;
+    rdfs:range cwp:ProcessStep ;
+    rdfs:label "has step"@en , "heeft stap"@nl .
+
+cwp:isStepOf rdf:type owl:ObjectProperty ;
+    owl:inverseOf cwp:hasStep ;
+    rdfs:domain cwp:ProcessStep ;
+    rdfs:range cwp:Process ;
+    rdfs:label "is step of"@en , "is stap van"@nl .
+
+cwp:precedes rdf:type owl:ObjectProperty , owl:TransitiveProperty ;
+    rdfs:domain cwp:ProcessStep ;
+    rdfs:range cwp:ProcessStep ;
+    rdfs:label "precedes"@en , "gaat vooraf aan"@nl .
+
+cwp:follows rdf:type owl:ObjectProperty , owl:TransitiveProperty ;
+    owl:inverseOf cwp:precedes ;
+    rdfs:domain cwp:ProcessStep ;
+    rdfs:range cwp:ProcessStep ;
+    rdfs:label "follows"@en , "volgt op"@nl .
+
+cwp:usesMaterial rdf:type owl:ObjectProperty ;
+    rdfs:domain cwp:Process ;
+    rdfs:range cwp:WetPlateEntity ;
+    rdfs:label "uses material"@en , "gebruikt materiaal"@nl .
+
+cwp:usesChemical rdf:type owl:ObjectProperty ;
+    rdfs:subPropertyOf cwp:usesMaterial ;
+    rdfs:domain cwp:Process ;
+    rdfs:range cwp:ChemicalSubstance ;
+    rdfs:label "uses chemical"@en , "gebruikt chemische stof"@nl .
+
+cwp:usesEquipment rdf:type owl:ObjectProperty ;
+    rdfs:domain cwp:Process ;
+    rdfs:range cwp:Equipment ;
+    rdfs:label "uses equipment"@en , "gebruikt apparatuur"@nl .
+
+cwp:produces rdf:type owl:ObjectProperty ;
+    rdfs:domain cwp:Process ;
+    rdfs:range cwp:ImageType ;
+    rdfs:label "produces"@en , "produceert"@nl .
+
+cwp:hasSupport rdf:type owl:ObjectProperty ;
+    rdfs:domain cwp:ImageType ;
+    rdfs:range cwp:SupportMaterial ;
+    rdfs:label "has support"@en , "heeft drager"@nl ;
+    skos:definition "Relates an image type to the plate substrate it is made on."@en .
+
+cwp:hasComponent rdf:type owl:ObjectProperty , owl:TransitiveProperty ;
+    rdfs:domain cwp:ChemicalMixture ;
+    rdfs:range cwp:ChemicalSubstance ;
+    rdfs:label "has component"@en , "heeft component"@nl .
+
+cwp:reactsWith rdf:type owl:ObjectProperty , owl:SymmetricProperty ;
+    rdfs:domain cwp:ChemicalSubstance ;
+    rdfs:range cwp:ChemicalSubstance ;
+    rdfs:label "reacts with"@en , "reageert met"@nl .
+
+cwp:forms rdf:type owl:ObjectProperty ;
+    rdfs:domain cwp:ChemicalSubstance ;
+    rdfs:range cwp:ChemicalSubstance ;
+    rdfs:label "forms"@en , "vormt"@nl .
+
+cwp:affects rdf:type owl:ObjectProperty ;
+    rdfs:domain cwp:WetPlateEntity ;
+    rdfs:range cwp:WetPlateEntity ;
+    rdfs:label "affects"@en , "beïnvloedt"@nl .
+
+cwp:causes rdf:type owl:ObjectProperty ;
+    rdfs:domain cwp:WetPlateEntity ;
+    rdfs:range cwp:Defect ;
+    rdfs:label "causes"@en , "veroorzaakt"@nl .
+
+cwp:prevents rdf:type owl:ObjectProperty ;
+    rdfs:domain cwp:WetPlateEntity ;
+    rdfs:range cwp:Defect ;
+    rdfs:label "prevents"@en , "voorkomt"@nl .
+
+cwp:protects rdf:type owl:ObjectProperty ;
+    rdfs:domain cwp:WetPlateEntity ;
+    rdfs:range cwp:WetPlateEntity ;
+    rdfs:label "protects"@en , "beschermt"@nl .
+
+cwp:requiresSafetyAspect rdf:type owl:ObjectProperty ;
+    rdfs:domain cwp:WetPlateEntity ;
+    rdfs:range cwp:SafetyAspect ;
+    rdfs:label "requires safety aspect"@en , "vereist veiligheidsmaatregel"@nl .
+
+cwp:hasRole rdf:type owl:ObjectProperty ;
+    rdfs:domain cwp:Person ;
+    rdfs:range cwp:Role ;
+    rdfs:label "has role"@en , "heeft rol"@nl .
+
+cwp:associatedWith rdf:type owl:ObjectProperty , owl:SymmetricProperty ;
+    rdfs:domain cwp:WetPlateEntity ;
+    rdfs:range cwp:WetPlateEntity ;
+    rdfs:label "associated with"@en , "geassocieerd met"@nl .
+
+#################################################################
+# Data properties
+#################################################################
+
+cwp:hasCASNumber rdf:type owl:DatatypeProperty ;
+    rdfs:domain cwp:ChemicalSubstance ;
+    rdfs:range xsd:string ;
+    rdfs:label "CAS number"@en , "CAS-nummer"@nl .
+
+cwp:hasFormula rdf:type owl:DatatypeProperty ;
+    rdfs:domain cwp:ChemicalSubstance ;
+    rdfs:range xsd:string ;
+    rdfs:label "chemical formula"@en , "chemische formule"@nl .
+
+cwp:hasHazardNote rdf:type owl:DatatypeProperty ;
+    rdfs:domain cwp:ChemicalSubstance ;
+    rdfs:range xsd:string ;
+    rdfs:label "hazard note"@en , "gevarennotitie"@nl .
+
+cwp:hasTypicalExposureTime rdf:type owl:DatatypeProperty ;
+    rdfs:domain cwp:ProcessStep ;
+    rdfs:range xsd:string ;
+    rdfs:label "typical exposure time"@en , "typische belichtingstijd"@nl .
+
+cwp:hasTypicalDuration rdf:type owl:DatatypeProperty ;
+    rdfs:domain cwp:ProcessStep ;
+    rdfs:range xsd:string ;
+    rdfs:label "typical duration"@en , "typische duur"@nl .
+
+#################################################################
+# Process instances
+#################################################################
+
+cwp:WetPlateCollodionProcess rdf:type cwp:Process ;
+    rdfs:label "Wet plate collodion process"@en , "Natte collodiumprocedé"@nl ;
+    skos:altLabel "Collodion process"@en ;
+    skos:definition "The 19th-century photographic process in which a plate is coated with salted collodion, sensitised in a silver nitrate bath, then exposed, developed, fixed and varnished while the collodion is still moist."@en ;
+    rdfs:seeAlso <https://en.wikipedia.org/wiki/Collodion_process> ;
+    cwp:hasStep cwp:PlatePreparation, cwp:Coating, cwp:Sensitizing, cwp:Exposure, cwp:Development, cwp:Fixing, cwp:Washing, cwp:Drying, cwp:Varnishing ;
+    cwp:usesChemical cwp:Collodion, cwp:SilverNitrateBath, cwp:IronDeveloper, cwp:SodiumThiosulfateFixer, cwp:PotassiumCyanideFixer, cwp:SandaracVarnish ;
+    cwp:usesEquipment cwp:LargeFormatCamera, cwp:PlateHolder, cwp:Darkbox ;
+    cwp:produces cwp:Ambrotype, cwp:Tintype, cwp:GlassNegative .
+
+cwp:PlatePreparation rdf:type cwp:ProcessStep ; rdfs:label "Plate preparation"@en , "Plaat voorbereiden"@nl ; skos:definition "Cleaning and, where needed, edging the plate so the collodion adheres and the plate is free of dust and grease."@en ; cwp:precedes cwp:Coating ; cwp:prevents cwp:Pinholes .
+cwp:Coating rdf:type cwp:ProcessStep ; rdfs:label "Coating (pouring collodion)"@en , "Collodion gieten"@nl ; skos:definition "Pouring salted collodion onto the plate in one smooth motion to form an even film."@en ; cwp:precedes cwp:Sensitizing .
+cwp:Sensitizing rdf:type cwp:ProcessStep ; rdfs:label "Sensitizing in the silver bath"@en , "Sensibiliseren in zilvernitraatbad"@nl ; skos:definition "Immersing the coated plate in a silver nitrate bath so light-sensitive silver halides form in the collodion film."@en ; cwp:precedes cwp:Exposure ; cwp:hasTypicalDuration "about 3-5 minutes, depending on recipe, temperature and bath condition"@en , "circa 3-5 minuten, afhankelijk van recept, temperatuur en badconditie"@nl .
+cwp:Exposure rdf:type cwp:ProcessStep ; rdfs:label "Exposure"@en , "Belichten"@nl ; skos:definition "Exposing the wet, sensitised plate in the camera to form a latent image."@en ; cwp:precedes cwp:Development ; cwp:hasTypicalExposureTime "seconds to minutes, depending on light, lens aperture and plate speed"@en .
+cwp:Development rdf:type cwp:ProcessStep ; rdfs:label "Development"@en , "Ontwikkelen"@nl ; skos:definition "Flowing an iron-based developer over the plate to reduce exposed silver and reveal the image."@en ; cwp:precedes cwp:Fixing ; cwp:hasTypicalDuration "roughly 10-20 seconds, judged by eye"@en .
+cwp:Fixing rdf:type cwp:ProcessStep ; rdfs:label "Fixing"@en , "Fixeren"@nl ; skos:definition "Clearing the remaining unexposed silver salts in a fixer so the image becomes stable and light-fast."@en ; cwp:precedes cwp:Washing .
+cwp:Washing rdf:type cwp:ProcessStep ; rdfs:label "Washing"@en , "Wassen"@nl ; skos:definition "Rinsing residual chemistry from the plate with water to prevent later staining."@en ; cwp:precedes cwp:Drying .
+cwp:Drying rdf:type cwp:ProcessStep ; rdfs:label "Drying"@en , "Drogen"@nl ; skos:definition "Gently drying the plate, usually with low heat, before varnishing."@en ; cwp:precedes cwp:Varnishing .
+cwp:Varnishing rdf:type cwp:ProcessStep ; rdfs:label "Varnishing"@en , "Vernissen"@nl ; skos:definition "Applying a warm resin varnish to protect the delicate image layer."@en .
+
+#################################################################
+# Image types
+#################################################################
+
+cwp:Ambrotype rdf:type cwp:ImageType ; rdfs:label "Ambrotype"@en , "Ambrotype"@nl ; skos:definition "A collodion positive on glass, backed with black so the thin negative image reads as a positive."@en ; rdfs:seeAlso <https://en.wikipedia.org/wiki/Ambrotype> ; cwp:hasSupport cwp:GlassPlate .
+cwp:Tintype rdf:type cwp:ImageType ; rdfs:label "Tintype (ferrotype)"@en , "Tintype / ferrotype"@nl ; skos:definition "A collodion positive made directly on a blackened metal plate; robust and inexpensive."@en ; rdfs:seeAlso <https://en.wikipedia.org/wiki/Tintype> ; cwp:hasSupport cwp:BlackenedMetalPlate .
+cwp:GlassNegative rdf:type cwp:ImageType ; rdfs:label "Glass negative"@en , "Glasnegatief"@nl ; skos:definition "A collodion negative on glass, used to make albumen or salted-paper prints."@en ; rdfs:seeAlso <https://en.wikipedia.org/wiki/Photographic_plate> ; cwp:hasSupport cwp:GlassPlate .
+
+#################################################################
+# Chemicals and mixtures
+#################################################################
+
+cwp:Collodion rdf:type cwp:ChemicalMixture ;
+    rdfs:label "Collodion"@en , "Collodion"@nl ;
+    skos:definition "A syrupy solution of nitrocellulose in ether and alcohol, salted with iodides and bromides; it forms the light-sensitive film carrier poured onto the plate."@en ;
+    rdfs:seeAlso <https://en.wikipedia.org/wiki/Collodion> ;
+    cwp:hasComponent cwp:Nitrocellulose, cwp:Ether, cwp:Ethanol, cwp:AmmoniumIodide, cwp:LithiumBromide ;
+    cwp:requiresSafetyAspect cwp:FireRisk, cwp:Ventilation .
+
+cwp:SilverNitrateBath rdf:type cwp:ChemicalMixture ;
+    rdfs:label "Silver nitrate bath"@en , "Zilvernitraatbad"@nl ;
+    skos:definition "An aqueous silver nitrate solution that sensitises the coated plate; it needs regular testing, filtering and sunning."@en ;
+    cwp:hasComponent cwp:SilverNitrate, cwp:DistilledWater ;
+    cwp:affects cwp:Sensitivity, cwp:Contrast ;
+    cwp:requiresSafetyAspect cwp:EyeProtection, cwp:ChemicalWasteManagement .
+
+cwp:IronDeveloper rdf:type cwp:Developer ;
+    rdfs:label "Iron developer"@en , "IJzerontwikkelaar"@nl ;
+    skos:definition "A ferrous-sulfate developer, acidified with acetic acid, used for tintypes and ambrotypes."@en ;
+    cwp:hasComponent cwp:FerrousSulfate, cwp:AceticAcid, cwp:Ethanol, cwp:DistilledWater ;
+    cwp:affects cwp:Density, cwp:Contrast .
+
+cwp:SugarDeveloper rdf:type cwp:Developer ;
+    rdfs:label "Sugar developer"@en , "Suikerontwikkelaar"@nl ;
+    skos:definition "An iron developer with added sugar that slows action and smooths tonality, popular for portraits."@en ;
+    cwp:hasComponent cwp:FerrousSulfate, cwp:AceticAcid, cwp:Ethanol, cwp:Sugar, cwp:DistilledWater .
+
+cwp:SodiumThiosulfateFixer rdf:type cwp:Fixer ;
+    rdfs:label "Sodium thiosulfate fixer"@en , "Natriumthiosulfaat-fixeer"@nl ;
+    skos:definition "A fixer based on sodium thiosulfate (hypo); slower but far safer than cyanide."@en ;
+    cwp:hasComponent cwp:SodiumThiosulfate, cwp:DistilledWater .
+
+cwp:PotassiumCyanideFixer rdf:type cwp:Fixer ;
+    rdfs:label "Potassium cyanide fixer"@en , "Kaliumcyanide-fixeer"@nl ;
+    skos:definition "A fast, traditional fixer based on potassium cyanide; acutely toxic and used only with appropriate expertise."@en ;
+    cwp:hasComponent cwp:PotassiumCyanide, cwp:DistilledWater ;
+    cwp:requiresSafetyAspect cwp:AcuteToxicity, cwp:Ventilation, cwp:ChemicalWasteManagement .
+
+cwp:SandaracVarnish rdf:type cwp:Varnish ;
+    rdfs:label "Sandarac varnish"@en , "Sandarakvernis"@nl ;
+    skos:definition "A traditional resin varnish of sandarac and lavender oil in alcohol, applied warm to protect the image."@en ;
+    cwp:hasComponent cwp:Sandarac, cwp:LavenderOil, cwp:Ethanol ;
+    cwp:protects cwp:ImageLayer .
+
+cwp:Nitrocellulose rdf:type cwp:ChemicalSubstance ; rdfs:label "Nitrocellulose"@en , "Nitrocellulose"@nl ; skos:definition "Cellulose nitrate; the film-forming polymer of collodion."@en ; cwp:hasFormula "C6H8(NO2)2O5" ; cwp:hasCASNumber "9004-70-0" ; cwp:hasHazardNote "Highly flammable solid."@en ; rdfs:seeAlso <https://en.wikipedia.org/wiki/Nitrocellulose> .
+cwp:Ether rdf:type cwp:ChemicalSubstance ; rdfs:label "Diethyl ether"@en , "Ether"@nl ; skos:definition "A volatile solvent in collodion."@en ; cwp:hasFormula "(C2H5)2O" ; cwp:hasCASNumber "60-29-7" ; cwp:hasHazardNote "Extremely volatile and flammable; forms explosive peroxides on storage."@en , "Zeer vluchtig en brandbaar."@nl ; rdfs:seeAlso <https://en.wikipedia.org/wiki/Diethyl_ether> .
+cwp:Ethanol rdf:type cwp:ChemicalSubstance ; rdfs:label "Ethanol"@en , "Ethanol"@nl ; skos:definition "Alcohol solvent in collodion and varnish."@en ; cwp:hasFormula "C2H5OH" ; cwp:hasCASNumber "64-17-5" ; cwp:hasHazardNote "Flammable."@en ; rdfs:seeAlso <https://en.wikipedia.org/wiki/Ethanol> .
+cwp:DistilledWater rdf:type cwp:ChemicalSubstance ; rdfs:label "Distilled water"@en , "Gedestilleerd water"@nl ; skos:definition "Purified water used to mix baths and developers, avoiding mineral contamination."@en ; cwp:hasFormula "H2O" ; cwp:hasCASNumber "7732-18-5" ; rdfs:seeAlso <https://en.wikipedia.org/wiki/Distilled_water> .
+cwp:SilverNitrate rdf:type cwp:ChemicalSubstance ; rdfs:label "Silver nitrate"@en , "Zilvernitraat"@nl ; skos:definition "The silver salt that sensitises the plate by forming silver halides in the collodion."@en ; cwp:hasFormula "AgNO3" ; cwp:hasCASNumber "7761-88-8" ; cwp:hasHazardNote "Corrosive; stains skin; harmful to aquatic life."@en ; rdfs:seeAlso <https://en.wikipedia.org/wiki/Silver_nitrate> .
+cwp:FerrousSulfate rdf:type cwp:ChemicalSubstance ; rdfs:label "Ferrous sulfate"@en , "IJzersulfaat"@nl ; skos:definition "Iron(II) sulfate; the reducing agent in the iron developer."@en ; cwp:hasFormula "FeSO4" ; cwp:hasCASNumber "7782-63-0" ; rdfs:seeAlso <https://en.wikipedia.org/wiki/Iron(II)_sulfate> .
+cwp:AceticAcid rdf:type cwp:ChemicalSubstance ; rdfs:label "Acetic acid"@en , "Azijnzuur"@nl ; skos:definition "Acid added to the developer to control its activity and restrain fog."@en ; cwp:hasFormula "CH3COOH" ; cwp:hasCASNumber "64-19-7" ; cwp:hasHazardNote "Corrosive in glacial form."@en ; rdfs:seeAlso <https://en.wikipedia.org/wiki/Acetic_acid> .
+cwp:SodiumThiosulfate rdf:type cwp:ChemicalSubstance ; rdfs:label "Sodium thiosulfate"@en , "Natriumthiosulfaat"@nl ; skos:definition "Hypo; dissolves unexposed silver salts during fixing."@en ; cwp:hasFormula "Na2S2O3" ; cwp:hasCASNumber "7772-98-7" ; rdfs:seeAlso <https://en.wikipedia.org/wiki/Sodium_thiosulfate> .
+cwp:PotassiumCyanide rdf:type cwp:ChemicalSubstance ; rdfs:label "Potassium cyanide"@en , "Kaliumcyanide"@nl ; skos:definition "A fast fixing agent that is acutely toxic; releases hydrogen cyanide gas if acidified."@en ; cwp:hasFormula "KCN" ; cwp:hasCASNumber "151-50-8" ; cwp:hasHazardNote "Acutely toxic; use only with appropriate expertise, ventilation and waste management."@en , "Acuut toxisch; alleen gebruiken met passende expertise, ventilatie en afvalbeheer."@nl ; rdfs:seeAlso <https://en.wikipedia.org/wiki/Potassium_cyanide> .
+cwp:Sandarac rdf:type cwp:ChemicalSubstance ; rdfs:label "Sandarac"@en , "Sandarak"@nl ; skos:definition "A natural resin used as the film-former in traditional plate varnish."@en ; cwp:hasCASNumber "9000-57-1" ; rdfs:seeAlso <https://en.wikipedia.org/wiki/Sandarac> .
+cwp:LavenderOil rdf:type cwp:ChemicalSubstance ; rdfs:label "Lavender oil"@en , "Lavendelolie"@nl ; skos:definition "An essential oil used as a plasticiser and solvent in sandarac varnish."@en ; cwp:hasCASNumber "8000-28-0" .
+cwp:Sugar rdf:type cwp:ChemicalSubstance ; rdfs:label "Sugar (sucrose)"@en , "Suiker"@nl ; skos:definition "Sucrose added to a developer to slow and smooth development."@en ; cwp:hasFormula "C12H22O11" ; cwp:hasCASNumber "57-50-1" ; rdfs:seeAlso <https://en.wikipedia.org/wiki/Sucrose> .
+
+cwp:AmmoniumIodide rdf:type cwp:Iodide ; rdfs:label "Ammonium iodide"@en , "Ammoniumjodide"@nl ; skos:definition "An iodide salt in collodion that forms silver iodide on sensitising."@en ; cwp:hasFormula "NH4I" ; cwp:hasCASNumber "12027-06-4" ; rdfs:seeAlso <https://en.wikipedia.org/wiki/Ammonium_iodide> ; cwp:reactsWith cwp:SilverNitrate .
+cwp:PotassiumIodide rdf:type cwp:Iodide ; rdfs:label "Potassium iodide"@en , "Kaliumjodide"@nl ; skos:definition "A common iodide salt for salting collodion."@en ; cwp:hasFormula "KI" ; cwp:hasCASNumber "7681-11-0" ; rdfs:seeAlso <https://en.wikipedia.org/wiki/Potassium_iodide> ; cwp:reactsWith cwp:SilverNitrate .
+cwp:CadmiumIodide rdf:type cwp:Iodide ; rdfs:label "Cadmium iodide"@en , "Cadmiumjodide"@nl ; skos:definition "An iodide salt giving keeping qualities to collodion; cadmium salts are toxic."@en ; cwp:hasFormula "CdI2" ; cwp:hasCASNumber "7790-80-9" ; cwp:hasHazardNote "Toxic; suspected carcinogen."@en ; rdfs:seeAlso <https://en.wikipedia.org/wiki/Cadmium_iodide> ; cwp:reactsWith cwp:SilverNitrate .
+cwp:LithiumBromide rdf:type cwp:Bromide ; rdfs:label "Lithium bromide"@en , "Lithiumbromide"@nl ; skos:definition "A bromide salt in collodion that forms silver bromide on sensitising."@en ; cwp:hasFormula "LiBr" ; cwp:hasCASNumber "7550-35-8" ; rdfs:seeAlso <https://en.wikipedia.org/wiki/Lithium_bromide> ; cwp:reactsWith cwp:SilverNitrate .
+cwp:CadmiumBromide rdf:type cwp:Bromide ; rdfs:label "Cadmium bromide"@en , "Cadmiumbromide"@nl ; skos:definition "A bromide salt for salting collodion; cadmium salts are toxic."@en ; cwp:hasFormula "CdBr2" ; cwp:hasCASNumber "7789-42-6" ; cwp:hasHazardNote "Toxic; suspected carcinogen."@en ; rdfs:seeAlso <https://en.wikipedia.org/wiki/Cadmium_bromide> ; cwp:reactsWith cwp:SilverNitrate .
+
+cwp:SilverIodide rdf:type cwp:ChemicalSubstance ; rdfs:label "Silver iodide"@en , "Zilverjodide"@nl ; skos:definition "The light-sensitive salt formed when an iodide meets silver nitrate."@en ; cwp:hasFormula "AgI" ; cwp:hasCASNumber "7783-96-2" ; rdfs:seeAlso <https://en.wikipedia.org/wiki/Silver_iodide> ; cwp:associatedWith cwp:LatentImage .
+cwp:SilverBromide rdf:type cwp:ChemicalSubstance ; rdfs:label "Silver bromide"@en , "Zilverbromide"@nl ; skos:definition "The light-sensitive salt formed when a bromide meets silver nitrate."@en ; cwp:hasFormula "AgBr" ; cwp:hasCASNumber "7785-23-1" ; rdfs:seeAlso <https://en.wikipedia.org/wiki/Silver_bromide> ; cwp:associatedWith cwp:LatentImage .
+
+cwp:AmmoniumIodide cwp:forms cwp:SilverIodide .
+cwp:LithiumBromide cwp:forms cwp:SilverBromide .
+
+#################################################################
+# Materials and equipment
+#################################################################
+
+cwp:GlassPlate rdf:type cwp:SupportMaterial ; rdfs:label "Glass plate"@en , "Glasplaat"@nl ; skos:definition "A cleaned glass sheet used as support for ambrotypes and glass negatives."@en .
+cwp:BlackenedMetalPlate rdf:type cwp:SupportMaterial ; rdfs:label "Blackened metal plate"@en , "Zwart gelakte metaalplaat"@nl ; skos:definition "A japanned or anodised dark metal plate used as the support for tintypes."@en .
+cwp:AluminiumPlate rdf:type cwp:SupportMaterial ; rdfs:label "Aluminium plate"@en , "Aluminiumplaat"@nl ; skos:definition "A modern anodised aluminium plate widely used for tintypes."@en .
+cwp:JapanSteel rdf:type cwp:SupportMaterial ; rdfs:label "Japanned steel"@en , "Japan steel"@nl ; skos:definition "Lacquered ('japanned') steel, the historical support for ferrotypes."@en .
+
+cwp:LargeFormatCamera rdf:type cwp:Camera ; rdfs:label "Large format camera"@en , "Grootformaatcamera"@nl ; skos:definition "A camera taking large plates, standard for wet plate work."@en .
+cwp:FieldCamera rdf:type cwp:Camera ; rdfs:label "Field camera"@en , "Veldcamera"@nl ; skos:definition "A portable folding large-format camera for location work."@en .
+cwp:StudioCamera rdf:type cwp:Camera ; rdfs:label "Studio camera"@en , "Studiocamera"@nl ; skos:definition "A heavier large-format camera on a stand for studio portraiture."@en .
+cwp:PetzvalLens rdf:type cwp:Lens ; rdfs:label "Petzval lens"@en , "Petzval-objectief"@nl ; skos:definition "A fast portrait lens (1840) known for a sharp centre and swirly background rendering."@en ; rdfs:seeAlso <https://en.wikipedia.org/wiki/Petzval_lens> ; cwp:affects cwp:Bokeh, cwp:Sharpness .
+cwp:RapidRectilinearLens rdf:type cwp:Lens ; rdfs:label "Rapid Rectilinear lens"@en , "Rapid Rectilinear-objectief"@nl ; skos:definition "A symmetrical lens (1866) giving even, distortion-free coverage."@en ; rdfs:seeAlso <https://en.wikipedia.org/wiki/Rapid_rectilinear> .
+cwp:PlateHolder rdf:type cwp:Equipment ; rdfs:label "Plate holder"@en , "Plaathouder"@nl ; skos:definition "A light-tight holder that carries the wet sensitised plate to and from the camera."@en .
+cwp:Darkbox rdf:type cwp:DarkroomEquipment ; rdfs:label "Darkbox"@en , "Darkbox"@nl ; skos:definition "A portable darkroom box for coating, sensitising and developing plates on location."@en .
+
+#################################################################
+# Light, characteristics, defects, environment, safety
+#################################################################
+
+cwp:Sunlight rdf:type cwp:LightSource ; rdfs:label "Sunlight"@en , "Zonlicht"@nl ; skos:definition "Daylight, rich in the blue and UV that collodion is sensitive to."@en ; cwp:affects cwp:Exposure .
+cwp:Flash rdf:type cwp:LightSource ; rdfs:label "Flash"@en , "Flitslicht"@nl ; skos:definition "Electronic flash or strobe used to expose plates indoors."@en ; cwp:affects cwp:Exposure .
+cwp:UVIntensity rdf:type cwp:LightSource ; rdfs:label "UV intensity"@en , "UV-intensiteit"@nl ; skos:definition "The amount of ultraviolet light present, which strongly drives collodion exposure."@en ; cwp:affects cwp:Sensitivity .
+
+cwp:Contrast rdf:type cwp:ImageCharacteristic ; rdfs:label "Contrast"@en , "Contrast"@nl ; skos:definition "The tonal separation between highlights and shadows in the image."@en .
+cwp:Density rdf:type cwp:ImageCharacteristic ; rdfs:label "Density"@en , "Dichtheid"@nl ; skos:definition "The amount of silver deposited, seen as how dark a tone reads."@en .
+cwp:Sensitivity rdf:type cwp:ImageCharacteristic ; rdfs:label "Sensitivity"@en , "Gevoeligheid"@nl ; skos:definition "How responsive the plate is to light; collodion is slow and blue/UV sensitive."@en .
+cwp:Sharpness rdf:type cwp:ImageCharacteristic ; rdfs:label "Sharpness"@en , "Scherpte"@nl ; skos:definition "The crispness of detail rendered in the image."@en .
+cwp:Bokeh rdf:type cwp:ImageCharacteristic ; rdfs:label "Bokeh"@en , "Bokeh"@nl ; skos:definition "The aesthetic quality of out-of-focus areas, distinctive with Petzval lenses."@en .
+cwp:ImageLayer rdf:type cwp:ImageCharacteristic ; rdfs:label "Image layer"@en , "Beeldlaag"@nl ; skos:definition "The fragile silver-in-collodion layer that carries the image and needs varnishing."@en .
+cwp:LatentImage rdf:type cwp:ImageCharacteristic ; rdfs:label "Latent image"@en , "Latent beeld"@nl ; skos:definition "The invisible image of exposed silver halide present before development."@en .
+
+cwp:Pinholes rdf:type cwp:Defect ; rdfs:label "Pinholes"@en , "Pinholes"@nl ; skos:definition "Tiny clear spots in the image, usually from dust on the plate or in the collodion."@en .
+cwp:Comets rdf:type cwp:Defect ; rdfs:label "Comets"@en , "Komeetsporen"@nl ; skos:altLabel "Comet trails"@en ; skos:definition "Teardrop trails caused by a particle dragged across the plate during coating or development."@en .
+cwp:FlowMarks rdf:type cwp:Defect ; rdfs:label "Flow marks"@en , "Gietstrepen"@nl ; skos:definition "Ridges or lines left by uneven pouring of the collodion."@en .
+cwp:Fog rdf:type cwp:Defect ; rdfs:label "Fog"@en , "Sluier"@nl ; skos:altLabel "Fogging"@en , "Chemical veil"@en ; skos:definition "A grey veil over the image, often from a contaminated or over-iodised silver bath."@en .
+cwp:MilkyFixing rdf:type cwp:Defect ; rdfs:label "Milky fixing"@en , "Melkachtig fixeerbeeld"@nl ; skos:definition "A milky, incompletely cleared image from exhausted or insufficient fixer."@en .
+cwp:CrackedVarnish rdf:type cwp:Defect ; rdfs:label "Cracked varnish"@en , "Craquelé in vernis"@nl ; skos:definition "Crazing of the varnish layer, often from applying it too cold or too thick."@en .
+cwp:Oysters rdf:type cwp:Defect ; rdfs:label "Oysters"@en , "Oesters"@nl ; skos:altLabel "Crescent clearings"@en ; skos:definition "Crescent-shaped clear marks, usually from contamination or a dirty plate."@en .
+
+cwp:Dust rdf:type cwp:EnvironmentalFactor ; rdfs:label "Dust"@en , "Stof"@nl ; skos:definition "Airborne particles that settle on the plate and cause pinholes and comets."@en ; cwp:causes cwp:Pinholes, cwp:Comets .
+cwp:Temperature rdf:type cwp:EnvironmentalFactor ; rdfs:label "Temperature"@en , "Temperatuur"@nl ; skos:definition "Ambient and bath temperature, which changes coating, sensitising and development times."@en ; cwp:affects cwp:Coating, cwp:Sensitizing, cwp:Development .
+cwp:Humidity rdf:type cwp:EnvironmentalFactor ; rdfs:label "Humidity"@en , "Luchtvochtigheid"@nl ; skos:definition "Air moisture, which affects how the collodion sets and the plate dries."@en ; cwp:affects cwp:Drying .
+
+cwp:FireRisk rdf:type cwp:SafetyAspect ; rdfs:label "Fire risk"@en , "Brandgevaar"@nl ; skos:definition "The flammability hazard of ether, alcohol and nitrocellulose."@en .
+cwp:Ventilation rdf:type cwp:SafetyAspect ; rdfs:label "Ventilation"@en , "Ventilatie"@nl ; skos:definition "The need to work with adequate fresh air to remove solvent and toxic vapours."@en .
+cwp:EyeProtection rdf:type cwp:SafetyAspect ; rdfs:label "Eye protection"@en , "Oogbescherming"@nl ; skos:definition "The need for goggles when handling silver nitrate and other corrosives."@en .
+cwp:AcuteToxicity rdf:type cwp:SafetyAspect ; rdfs:label "Acute toxicity"@en , "Acute toxiciteit"@nl ; skos:definition "The risk of rapid poisoning, notably from cyanide-based fixers."@en .
+cwp:ChemicalWasteManagement rdf:type cwp:SafetyAspect ; rdfs:label "Chemical waste management"@en , "Chemisch afvalbeheer"@nl ; skos:definition "Proper collection and disposal of silver-, cadmium- and cyanide-bearing waste."@en .
+
+#################################################################
+# Roles, persons, analysis and conservation
+#################################################################
+
+cwp:Photographer rdf:type cwp:Role ; rdfs:label "Photographer"@en , "Fotograaf"@nl ; skos:definition "The practitioner who makes the plate."@en .
+cwp:Chemist rdf:type cwp:Role ; rdfs:label "Chemist"@en , "Chemicus"@nl ; skos:definition "A specialist who formulates and tests the chemistry."@en .
+cwp:Conservator rdf:type cwp:Role ; rdfs:label "Conservator"@en , "Conservator"@nl ; skos:definition "A professional who preserves and stabilises historic plates."@en .
+cwp:Restorer rdf:type cwp:Role ; rdfs:label "Restorer"@en , "Restaurator"@nl ; skos:definition "A specialist who repairs damaged plates and cases."@en .
+cwp:Model rdf:type cwp:Role ; rdfs:label "Model"@en , "Model"@nl ; skos:definition "The sitter or subject of a portrait."@en .
+
+cwp:FrederickScottArcher rdf:type cwp:Person ;
+    rdfs:label "Frederick Scott Archer"@en , "Frederick Scott Archer"@nl ;
+    skos:definition "English inventor who published the wet plate collodion process in 1851."@en ;
+    rdfs:seeAlso <https://en.wikipedia.org/wiki/Frederick_Scott_Archer> ;
+    cwp:hasRole cwp:Photographer ;
+    cwp:associatedWith cwp:WetPlateCollodionProcess .
+
+cwp:JohnCoffer rdf:type cwp:Person ;
+    rdfs:label "John Coffer"@en , "John Coffer"@nl ;
+    skos:definition "Contemporary American tintypist whose teaching helped revive the wet plate process."@en ;
+    cwp:hasRole cwp:Photographer ;
+    cwp:associatedWith cwp:WetPlateCollodionProcess .
+
+cwp:Cleaning rdf:type cwp:ConservationActivity ; rdfs:label "Cleaning"@en , "Reiniging"@nl ; skos:definition "Careful surface cleaning of a historic plate by a conservator."@en .
+cwp:Digitization rdf:type cwp:ConservationActivity ; rdfs:label "Digitization"@en , "Digitalisering"@nl ; skos:definition "Producing a high-quality digital surrogate of a plate for access and preservation."@en .
+cwp:ArchivalStorage rdf:type cwp:ConservationActivity ; rdfs:label "Archival storage"@en , "Archiefopslag"@nl ; skos:definition "Housing plates in stable, inert enclosures and controlled climate."@en ; cwp:protects cwp:ImageLayer .
+
+cwp:Microscopy rdf:type cwp:AnalysisMethod ; rdfs:label "Microscopy"@en , "Microscopie"@nl ; skos:definition "Examining the plate surface under magnification."@en ; rdfs:seeAlso <https://en.wikipedia.org/wiki/Microscopy> .
+cwp:UVPhotography rdf:type cwp:AnalysisMethod ; rdfs:label "UV photography"@en , "UV-opname"@nl ; skos:definition "Imaging under ultraviolet light to reveal varnish and surface condition."@en .
+cwp:XRF rdf:type cwp:AnalysisMethod ; rdfs:label "X-ray fluorescence (XRF)"@en , "XRF"@nl ; skos:definition "Non-destructive elemental analysis of the plate's metals."@en ; rdfs:seeAlso <https://en.wikipedia.org/wiki/X-ray_fluorescence> .
+cwp:FTIR rdf:type cwp:AnalysisMethod ; rdfs:label "FTIR spectroscopy"@en , "FTIR"@nl ; skos:definition "Infrared spectroscopy used to identify varnishes and binders."@en ; rdfs:seeAlso <https://en.wikipedia.org/wiki/Fourier-transform_infrared_spectroscopy> .
+
+#################################################################
+# Recipes
+#################################################################
+
+cwp:OldWorkCollodionRecipe rdf:type cwp:Recipe ;
+    rdfs:label "Old Work collodion recipe"@en , "Old Work collodion-recept"@nl ;
+    skos:definition "A salted-collodion formulation suited to ambrotypes and tintypes."@en ;
+    cwp:associatedWith cwp:Collodion, cwp:Ambrotype, cwp:Tintype .
+
+cwp:PortraitCollodionRecipe rdf:type cwp:Recipe ;
+    rdfs:label "Portrait collodion recipe"@en , "Portretcollodion-recept"@nl ;
+    skos:definition "A collodion formulation tuned for portraiture, often paired with a Petzval lens."@en ;
+    cwp:associatedWith cwp:Collodion, cwp:PetzvalLens, cwp:Ambrotype .
+
+cwp:SugarDeveloperRecipe rdf:type cwp:Recipe ;
+    rdfs:label "Sugar developer recipe"@en , "Suikerontwikkelaar-recept"@nl ;
+    skos:definition "A developer formulation with added sugar for smoother tonality."@en ;
+    cwp:associatedWith cwp:SugarDeveloper .
